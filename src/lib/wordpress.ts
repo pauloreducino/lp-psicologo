@@ -100,7 +100,9 @@ export function wpPostToArticle(post: WPPost): NormalizedArticle {
   // Excerpt: campo ACF tem prioridade, senão usa o excerpt nativo do WP
   const rawExcerpt =
     post.acf?.excerpt ||
-    stripHtml(post.excerpt.rendered).replace(/\[&hellip;\]/g, "").trim();
+    stripHtml(post.excerpt.rendered)
+      .replace(/\[&hellip;\]/g, "")
+      .trim();
 
   // Tags: campo ACF separado por vírgula
   const tags = post.acf?.tags
@@ -133,7 +135,7 @@ export function wpPostToArticle(post: WPPost): NormalizedArticle {
 // ─────────────────────────────────────────────
 async function wpFetch<T>(
   endpoint: string,
-  revalidate = 60
+  revalidate = 60,
 ): Promise<T | null> {
   try {
     const res = await fetch(`${API_URL}${endpoint}`, {
@@ -159,7 +161,7 @@ async function wpFetch<T>(
 export async function getAllArticles(): Promise<NormalizedArticle[]> {
   const posts = await wpFetch<WPPost[]>(
     "/posts?_embed&per_page=100&status=publish&orderby=date&order=desc",
-    60
+    60,
   );
 
   if (!posts || !Array.isArray(posts)) return getFallbackArticles();
@@ -171,11 +173,11 @@ export async function getAllArticles(): Promise<NormalizedArticle[]> {
 // Buscar artigo por slug
 // ─────────────────────────────────────────────
 export async function getArticleBySlug(
-  slug: string
+  slug: string,
 ): Promise<NormalizedArticle | null> {
   const posts = await wpFetch<WPPost[]>(
     `/posts?slug=${encodeURIComponent(slug)}&_embed&status=publish`,
-    60
+    60,
   );
 
   if (!posts || !Array.isArray(posts) || posts.length === 0) {
@@ -193,7 +195,7 @@ export async function getArticleBySlug(
 export async function getAllSlugs(): Promise<string[]> {
   const posts = await wpFetch<Array<{ slug: string }>>(
     "/posts?per_page=100&status=publish&_fields=slug",
-    3600
+    3600,
   );
 
   if (!posts || !Array.isArray(posts)) {
@@ -219,11 +221,11 @@ export async function getFeaturedArticles(): Promise<NormalizedArticle[]> {
 // Buscar os N artigos mais recentes
 // ─────────────────────────────────────────────
 export async function getLatestArticles(
-  count = 3
+  count = 3,
 ): Promise<NormalizedArticle[]> {
   const posts = await wpFetch<WPPost[]>(
     `/posts?_embed&per_page=${count}&status=publish&orderby=date&order=desc`,
-    60
+    60,
   );
 
   if (!posts || !Array.isArray(posts)) {
@@ -261,5 +263,8 @@ export function buildDynamicCategories(articles: NormalizedArticle[]) {
     count: v.count,
   }));
 
-  return [{ id: "all", label: "Todos os artigos", count: articles.length }, ...dynamic];
+  return [
+    { id: "all", label: "Todos os artigos", count: articles.length },
+    ...dynamic,
+  ];
 }

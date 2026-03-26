@@ -2,9 +2,18 @@
 const nextConfig = {
   images: {
     remotePatterns: [
-      { protocol: "https", hostname: "images.unsplash.com" },
-      { protocol: "http", hostname: "dr-rafael-mendes.local" },
-      { protocol: "http", hostname: "rafaelmendes.great-site.net" },
+      {
+        protocol: "https",
+        hostname: "dev-rafael-mendes.pantheonsite.io",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+        port: "",
+        pathname: "/**",
+      },
     ],
   },
 };
