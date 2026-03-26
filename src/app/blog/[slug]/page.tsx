@@ -63,7 +63,7 @@ function slugify(text: string): string {
 }
 
 function extractHeadings(html: string) {
-  const matches = [...html.matchAll(/<h2[^>]*>([\s\S]*?)<\/h2>/gi)];
+  const matches = Array.from(html.matchAll(/<h2[^>]*>([\s\S]*?)<\/h2>/gi));
   return matches
     .map((m) => {
       const text = m[1].replace(/<[^>]+>/g, "").trim();
