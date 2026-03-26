@@ -230,7 +230,7 @@ export default function Hero() {
               >
                 <Image
                   src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=560&q=80"
-                  alt="Dr. Rafael Mendes, Psicólogo Clínico, sorrindo em ambiente profissional"
+                  alt="Rafael Mendes, Psicólogo Clínico, sorrindo em ambiente profissional"
                   width={560}
                   height={747}
                   className="w-full object-cover"

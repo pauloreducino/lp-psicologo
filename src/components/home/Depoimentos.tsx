@@ -3,19 +3,19 @@ const TESTIMONIALS = [
     initial: "M",
     name: "Marina S.",
     period: "Paciente há 2 anos",
-    text: "O Dr. Rafael mudou minha vida. Depois de anos com ansiedade severa, aprendi ferramentas reais para lidar com meus pensamentos. Hoje vivo com muito mais leveza.",
+    text: "O Rafael mudou minha vida. Depois de anos com ansiedade severa, aprendi ferramentas reais para lidar com meus pensamentos. Hoje vivo com muito mais leveza.",
   },
   {
     initial: "C",
     name: "Carlos A.",
     period: "Paciente há 18 meses",
-    text: "Estava no limite do burnout quando comecei a terapia. O acolhimento e a profissionalidade do Dr. Rafael foram fundamentais para eu me reencontrar.",
+    text: "Estava no limite do burnout quando comecei a terapia. O acolhimento e a profissionalidade do Rafael foram fundamentais para eu me reencontrar.",
   },
   {
     initial: "F",
     name: "Fernanda L.",
     period: "Paciente há 3 anos",
-    text: "Fazer terapia online com o Dr. Rafael foi incrível. Mesma qualidade que no presencial, só que na comodidade de casa. Recomendo de olhos fechados!",
+    text: "Fazer terapia online com o Rafael foi incrível. Mesma qualidade que no presencial, só que na comodidade de casa. Recomendo de olhos fechados!",
   },
 ];
 
@@ -87,7 +87,12 @@ export default function Depoimentos() {
                   >
                     {t.name}
                   </cite>
-                  <span style={{ fontSize: ".72rem", color: "rgba(255,255,255,.4)" }}>
+                  <span
+                    style={{
+                      fontSize: ".72rem",
+                      color: "rgba(255,255,255,.4)",
+                    }}
+                  >
                     {t.period}
                   </span>
                 </div>

@@ -4,7 +4,9 @@ import Link from "next/link";
 import type { Category } from "@/types";
 import { WA_URL } from "@/lib/utils";
 
-interface Props { categories: Category[] }
+interface Props {
+  categories: Category[];
+}
 
 export default function BlogSidebar({ categories }: Props) {
   const [email, setEmail] = useState("");
@@ -13,7 +15,10 @@ export default function BlogSidebar({ categories }: Props) {
 
   const handleNewsletter = (e: React.FormEvent) => {
     e.preventDefault();
-    if (email) { setSubmitted(true); setEmail(""); }
+    if (email) {
+      setSubmitted(true);
+      setEmail("");
+    }
   };
 
   const handleCopy = async () => {
@@ -21,82 +26,268 @@ export default function BlogSidebar({ categories }: Props) {
       await navigator.clipboard.writeText(window.location.href);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
-    } catch { /* ignore */ }
+    } catch {
+      /* ignore */
+    }
   };
 
   const SHARE_LINKS = [
-    { label: "WhatsApp", href: `https://wa.me/?text=${encodeURIComponent("Confira o blog do Dr. Rafael Mendes sobre saúde mental! " + (typeof window !== "undefined" ? window.location.href : ""))}`, cls: "share-wa", icon: <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" /></svg> },
-    { label: "Twitter", href: `https://twitter.com/intent/tweet?text=${encodeURIComponent("Lendo artigos sobre saúde mental com o Dr. Rafael Mendes!")}`, cls: "share-tw", icon: <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg> },
-    { label: "LinkedIn", href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(typeof window !== "undefined" ? window.location.href : "")}`, cls: "share-li", icon: <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" /></svg> },
+    {
+      label: "WhatsApp",
+      href: `https://wa.me/?text=${encodeURIComponent("Confira o blog do Rafael Mendes sobre saúde mental! " + (typeof window !== "undefined" ? window.location.href : ""))}`,
+      cls: "share-wa",
+      icon: (
+        <svg
+          width="14"
+          height="14"
+          fill="currentColor"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+        </svg>
+      ),
+    },
+    {
+      label: "Twitter",
+      href: `https://twitter.com/intent/tweet?text=${encodeURIComponent("Lendo artigos sobre saúde mental com o Rafael Mendes!")}`,
+      cls: "share-tw",
+      icon: (
+        <svg
+          width="14"
+          height="14"
+          fill="currentColor"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+        </svg>
+      ),
+    },
+    {
+      label: "LinkedIn",
+      href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(typeof window !== "undefined" ? window.location.href : "")}`,
+      cls: "share-li",
+      icon: (
+        <svg
+          width="14"
+          height="14"
+          fill="currentColor"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+        </svg>
+      ),
+    },
   ];
 
   const SOCIALS = [
-    { label: "Instagram", sub: "@drrafaelmendes", href: "#", bg: "linear-gradient(135deg,#f59e0b20,#ec489920)", iconBg: "linear-gradient(135deg,#f59e0b,#ec4899)", icon: <svg width="16" height="16" fill="#fff" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" /></svg> },
-    { label: "LinkedIn", sub: "Dr. Rafael Mendes", href: "#", bg: "#0a66c210", iconBg: "#0a66c2", icon: <svg width="16" height="16" fill="#fff" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" /></svg> },
-    { label: "Twitter / X", sub: "@drrafaelmendes", href: "#", bg: "#1d9bf010", iconBg: "#1d9bf0", icon: <svg width="16" height="16" fill="#fff" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg> },
+    {
+      label: "Instagram",
+      sub: "@drrafaelmendes",
+      href: "#",
+      bg: "linear-gradient(135deg,#f59e0b20,#ec489920)",
+      iconBg: "linear-gradient(135deg,#f59e0b,#ec4899)",
+      icon: (
+        <svg
+          width="16"
+          height="16"
+          fill="#fff"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+        </svg>
+      ),
+    },
+    {
+      label: "LinkedIn",
+      sub: "Rafael Mendes",
+      href: "#",
+      bg: "#0a66c210",
+      iconBg: "#0a66c2",
+      icon: (
+        <svg
+          width="16"
+          height="16"
+          fill="#fff"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+        </svg>
+      ),
+    },
+    {
+      label: "Twitter / X",
+      sub: "@drrafaelmendes",
+      href: "#",
+      bg: "#1d9bf010",
+      iconBg: "#1d9bf0",
+      icon: (
+        <svg
+          width="16"
+          height="16"
+          fill="#fff"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+        </svg>
+      ),
+    },
   ];
 
   return (
     <aside aria-label="Barra lateral do blog" className="flex flex-col gap-5">
-
       {/* ── Agendar CTA ── */}
-      <div className="rounded-[14px] p-5 text-center" style={{ background: "linear-gradient(135deg,#1a3a26,#2d5e3d)" }}>
-        <div className="flex items-center justify-center rounded-[13px] mx-auto mb-3"
-          style={{ width: 44, height: 44, background: "rgba(196,164,90,.2)", border: "1.5px solid rgba(196,164,90,.35)" }}>
-          <svg width="22" height="22" fill="none" stroke="#c4a45a" strokeWidth="1.7" viewBox="0 0 24 24" aria-hidden="true">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+      <div
+        className="rounded-[14px] p-5 text-center"
+        style={{ background: "linear-gradient(135deg,#1a3a26,#2d5e3d)" }}
+      >
+        <div
+          className="flex items-center justify-center rounded-[13px] mx-auto mb-3"
+          style={{
+            width: 44,
+            height: 44,
+            background: "rgba(196,164,90,.2)",
+            border: "1.5px solid rgba(196,164,90,.35)",
+          }}
+        >
+          <svg
+            width="22"
+            height="22"
+            fill="none"
+            stroke="#c4a45a"
+            strokeWidth="1.7"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+            />
           </svg>
         </div>
-        <p className="font-serif font-semibold text-white mb-1" style={{ fontSize: "1.05rem" }}>Precisa de ajuda?</p>
-        <p className="leading-relaxed mb-4" style={{ fontSize: ".78rem", color: "rgba(255,255,255,.6)" }}>
-          Agende uma consulta e dê o primeiro passo para cuidar da sua saúde mental.
+        <p
+          className="font-serif font-semibold text-white mb-1"
+          style={{ fontSize: "1.05rem" }}
+        >
+          Precisa de ajuda?
         </p>
-        <a href={WA_URL} target="_blank" rel="noopener noreferrer"
+        <p
+          className="leading-relaxed mb-4"
+          style={{ fontSize: ".78rem", color: "rgba(255,255,255,.6)" }}
+        >
+          Agende uma consulta e dê o primeiro passo para cuidar da sua saúde
+          mental.
+        </p>
+        <a
+          href={WA_URL}
+          target="_blank"
+          rel="noopener noreferrer"
           className="flex items-center justify-center gap-2 text-white font-semibold w-full rounded-full transition-all hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-gold-500"
-          style={{ background: "#c4a45a", padding: ".6rem 1rem", fontSize: ".82rem" }}>
-          <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" /></svg>
+          style={{
+            background: "#c4a45a",
+            padding: ".6rem 1rem",
+            fontSize: ".82rem",
+          }}
+        >
+          <svg
+            width="15"
+            height="15"
+            fill="currentColor"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+          </svg>
           Agendar pelo WhatsApp
         </a>
       </div>
 
       {/* ── Newsletter ── */}
       <div className="sidebar-card">
-        <h3 className="font-serif font-semibold mb-1" style={{ fontSize: "1.05rem", color: "#1a3a26" }}>Newsletter</h3>
-        <p className="text-gray-500 mb-4 leading-relaxed" style={{ fontSize: ".78rem" }}>
+        <h3
+          className="font-serif font-semibold mb-1"
+          style={{ fontSize: "1.05rem", color: "#1a3a26" }}
+        >
+          Newsletter
+        </h3>
+        <p
+          className="text-gray-500 mb-4 leading-relaxed"
+          style={{ fontSize: ".78rem" }}
+        >
           Receba novos artigos sobre saúde mental direto no seu e-mail.
         </p>
         {submitted ? (
-          <div className="text-center py-3 rounded-xl" style={{ background: "#eef4f0" }}>
-            <p className="font-bold text-sm" style={{ color: "#1a3a26" }}>✓ Inscrito com sucesso!</p>
-            <p className="text-xs text-gray-500 mt-1">Obrigado por se inscrever.</p>
+          <div
+            className="text-center py-3 rounded-xl"
+            style={{ background: "#eef4f0" }}
+          >
+            <p className="font-bold text-sm" style={{ color: "#1a3a26" }}>
+              ✓ Inscrito com sucesso!
+            </p>
+            <p className="text-xs text-gray-500 mt-1">
+              Obrigado por se inscrever.
+            </p>
           </div>
         ) : (
           <form onSubmit={handleNewsletter} noValidate>
-            <label htmlFor="nl-email" className="sr-only">Seu e-mail</label>
-            <input id="nl-email" type="email" required value={email} onChange={(e) => setEmail(e.target.value)}
-              placeholder="seu@email.com" className="newsletter-input mb-2" />
-            <button type="submit"
+            <label htmlFor="nl-email" className="sr-only">
+              Seu e-mail
+            </label>
+            <input
+              id="nl-email"
+              type="email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="seu@email.com"
+              className="newsletter-input mb-2"
+            />
+            <button
+              type="submit"
               className="flex items-center justify-center gap-2 text-white font-semibold w-full rounded-full transition-all hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-forest-800"
-              style={{ background: "#1a3a26", padding: ".6rem 1rem", fontSize: ".82rem" }}>
+              style={{
+                background: "#1a3a26",
+                padding: ".6rem 1rem",
+                fontSize: ".82rem",
+              }}
+            >
               Inscrever-se
             </button>
-            <p className="text-center text-[.68rem] text-gray-400 mt-2">Sem spam. Cancele quando quiser.</p>
+            <p className="text-center text-[.68rem] text-gray-400 mt-2">
+              Sem spam. Cancele quando quiser.
+            </p>
           </form>
         )}
       </div>
 
       {/* ── Categories ── */}
       <div className="sidebar-card">
-        <h3 className="font-serif font-semibold mb-4" style={{ fontSize: "1.05rem", color: "#1a3a26" }}>Categorias</h3>
+        <h3
+          className="font-serif font-semibold mb-4"
+          style={{ fontSize: "1.05rem", color: "#1a3a26" }}
+        >
+          Categorias
+        </h3>
         <nav aria-label="Categorias do blog">
           <ul className="flex flex-col gap-1.5">
             {categories.map((cat) => (
               <li key={cat.id}>
-                <Link href={`/blog?cat=${cat.id}`}
+                <Link
+                  href={`/blog?cat=${cat.id}`}
                   className="flex items-center justify-between px-3 py-2 rounded-[8px] transition-all text-sm font-semibold text-gray-700 hover:text-forest-800 hover:bg-sage-100 focus:outline-none focus:ring-2 focus:ring-forest-800"
-                  style={{ textDecoration: "none" }}>
+                  style={{ textDecoration: "none" }}
+                >
                   {cat.label}
-                  <span className="rounded-full px-2 py-0.5 text-xs font-bold" style={{ background: "#eef4f0", color: "#1a3a26" }}>
+                  <span
+                    className="rounded-full px-2 py-0.5 text-xs font-bold"
+                    style={{ background: "#eef4f0", color: "#1a3a26" }}
+                  >
                     {cat.count}
                   </span>
                 </Link>
@@ -108,19 +299,38 @@ export default function BlogSidebar({ categories }: Props) {
 
       {/* ── Social ── */}
       <div className="sidebar-card">
-        <h3 className="font-serif font-semibold mb-4" style={{ fontSize: "1.05rem", color: "#1a3a26" }}>Redes Sociais</h3>
+        <h3
+          className="font-serif font-semibold mb-4"
+          style={{ fontSize: "1.05rem", color: "#1a3a26" }}
+        >
+          Redes Sociais
+        </h3>
         <ul className="flex flex-col gap-2" role="list">
           {SOCIALS.map((s) => (
             <li key={s.label}>
-              <a href={s.href} target="_blank" rel="noopener noreferrer"
+              <a
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex items-center gap-3 p-2.5 rounded-[10px] transition-opacity hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-forest-800"
-                style={{ background: s.bg, textDecoration: "none" }}>
-                <div className="flex items-center justify-center rounded-[9px] shrink-0" style={{ width: 32, height: 32, background: s.iconBg }}>
+                style={{ background: s.bg, textDecoration: "none" }}
+              >
+                <div
+                  className="flex items-center justify-center rounded-[9px] shrink-0"
+                  style={{ width: 32, height: 32, background: s.iconBg }}
+                >
                   {s.icon}
                 </div>
                 <div>
-                  <p className="font-bold text-gray-800" style={{ fontSize: ".82rem" }}>{s.label}</p>
-                  <p className="text-gray-400" style={{ fontSize: ".72rem" }}>{s.sub}</p>
+                  <p
+                    className="font-bold text-gray-800"
+                    style={{ fontSize: ".82rem" }}
+                  >
+                    {s.label}
+                  </p>
+                  <p className="text-gray-400" style={{ fontSize: ".72rem" }}>
+                    {s.sub}
+                  </p>
                 </div>
               </a>
             </li>
@@ -130,27 +340,54 @@ export default function BlogSidebar({ categories }: Props) {
 
       {/* ── Share blog ── */}
       <div className="sidebar-card" style={{ background: "#eef4f0" }}>
-        <h3 className="font-serif font-semibold mb-1" style={{ fontSize: "1.05rem", color: "#1a3a26" }}>Compartilhe o Blog</h3>
-        <p className="text-gray-500 mb-4" style={{ fontSize: ".78rem" }}>Ajude outras pessoas a cuidarem da saúde mental!</p>
+        <h3
+          className="font-serif font-semibold mb-1"
+          style={{ fontSize: "1.05rem", color: "#1a3a26" }}
+        >
+          Compartilhe o Blog
+        </h3>
+        <p className="text-gray-500 mb-4" style={{ fontSize: ".78rem" }}>
+          Ajude outras pessoas a cuidarem da saúde mental!
+        </p>
         <div className="grid grid-cols-2 gap-2">
           {SHARE_LINKS.map((s) => (
-            <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer"
-              className={`share-btn ${s.cls} justify-center`} style={{ fontSize: ".72rem", padding: ".4rem .6rem" }}>
+            <a
+              key={s.label}
+              href={s.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`share-btn ${s.cls} justify-center`}
+              style={{ fontSize: ".72rem", padding: ".4rem .6rem" }}
+            >
               {s.icon}
               {s.label}
             </a>
           ))}
-          <button onClick={handleCopy}
-            className="share-btn share-cp justify-center col-span-2" style={{ fontSize: ".72rem", padding: ".4rem .6rem" }}>
-            <svg width="12" height="12" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
+          <button
+            onClick={handleCopy}
+            className="share-btn share-cp justify-center col-span-2"
+            style={{ fontSize: ".72rem", padding: ".4rem .6rem" }}
+          >
+            <svg
+              width="12"
+              height="12"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
               <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
-              <path strokeLinecap="round" strokeLinejoin="round" d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"
+              />
             </svg>
             {copied ? "Link copiado! ✓" : "Copiar link"}
           </button>
         </div>
       </div>
-
     </aside>
   );
 }

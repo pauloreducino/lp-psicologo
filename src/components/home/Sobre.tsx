@@ -14,7 +14,7 @@ export default function Sobre() {
       id="sobre"
       className="py-20 lg:py-24"
       style={{ background: "#eef4f0" }}
-      aria-label="Sobre Dr. Rafael Mendes"
+      aria-label="Sobre Rafael Mendes"
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
@@ -31,7 +31,7 @@ export default function Sobre() {
             >
               <Image
                 src="/images/doctor.webp"
-                alt="Dr. Rafael Mendes em seu consultório"
+                alt="Rafael Mendes em seu consultório"
                 width={580}
                 height={725}
                 className="w-full object-cover rounded-[20px] relative z-10"
@@ -86,7 +86,7 @@ export default function Sobre() {
               className="text-gray-600 leading-relaxed mb-3"
               style={{ fontSize: "clamp(.85rem,2vw,.95rem)" }}
             >
-              Sou o Dr. Rafael Mendes, psicólogo clínico com mais de 12 anos
+              Sou o Rafael Mendes, psicólogo clínico com mais de 12 anos
               dedicados à saúde mental. Meu trabalho é guiado pela crença de que
               cada pessoa tem em si a capacidade de crescer, se transformar e
               viver de forma mais plena.
@@ -143,7 +143,7 @@ export default function Sobre() {
                 fontSize: ".9rem",
               }}
             >
-              Agendar com Dr. Rafael
+              Agendar com Rafael
               <svg
                 width="15"
                 height="15"
