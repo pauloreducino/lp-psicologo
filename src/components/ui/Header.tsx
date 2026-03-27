@@ -44,7 +44,7 @@ export default function Header({ transparent = false }: HeaderProps) {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${headerBg}`}
+      className={`bg-gradient-to-br from-[#1a3a26] to-[#2d5e3d] fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${headerBg}`}
       role="banner"
     >
       <nav
