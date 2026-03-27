@@ -1,3 +1,5 @@
+import StatsCounter from "./StatsCounter";
+
 const TIMELINE = [
   {
     year: "2024",
@@ -70,7 +72,6 @@ export default function Formacao() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12">
-
           {/* Timeline */}
           <div className="reveal-left">
             <h3
@@ -83,7 +84,8 @@ export default function Formacao() {
               <div
                 className="absolute left-[5px] top-0 bottom-0 w-0.5 rounded"
                 style={{
-                  background: "linear-gradient(to bottom,#1a3a26,#c4a45a,rgba(196,164,90,.1))",
+                  background:
+                    "linear-gradient(to bottom,#1a3a26,#c4a45a,rgba(196,164,90,.1))",
                 }}
                 aria-hidden="true"
               />
@@ -112,10 +114,16 @@ export default function Formacao() {
                   >
                     {t.year}
                   </time>
-                  <h4 className="font-bold mb-1" style={{ fontSize: ".92rem", color: "#1a3a26" }}>
+                  <h4
+                    className="font-bold mb-1"
+                    style={{ fontSize: ".92rem", color: "#1a3a26" }}
+                  >
                     {t.title}
                   </h4>
-                  <p className="leading-relaxed text-gray-500" style={{ fontSize: ".82rem" }}>
+                  <p
+                    className="leading-relaxed text-gray-500"
+                    style={{ fontSize: ".82rem" }}
+                  >
                     {t.desc}
                   </p>
                 </li>
@@ -125,21 +133,7 @@ export default function Formacao() {
 
           {/* Stats + memberships */}
           <div className="reveal-right flex flex-col gap-4">
-            <div className="grid grid-cols-2 gap-4">
-              {STATS.map((s) => (
-                <div key={s.value} className="card p-5 text-center">
-                  <p
-                    className="font-serif font-bold leading-none"
-                    style={{ fontSize: "2.8rem", color: "#1a3a26" }}
-                  >
-                    {s.value}
-                  </p>
-                  <p className="text-gray-500 font-medium mt-1" style={{ fontSize: ".78rem" }}>
-                    {s.label}
-                  </p>
-                </div>
-              ))}
-            </div>
+            <StatsCounter stats={STATS} />
 
             <div className="card p-5">
               <h4
@@ -178,7 +172,10 @@ export default function Formacao() {
                       >
                         {m.title}
                       </p>
-                      <p className="text-gray-400" style={{ fontSize: ".75rem" }}>
+                      <p
+                        className="text-gray-400"
+                        style={{ fontSize: ".75rem" }}
+                      >
                         {m.sub}
                       </p>
                     </div>
