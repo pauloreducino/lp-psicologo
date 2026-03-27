@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Suspense } from "react";
 import Header from "@/components/ui/Header";
 import Footer from "@/components/ui/Footer";
 import { WhatsAppFloat, ScrollProgress, RevealObserver } from "@/components/ui/ClientWidgets";
@@ -85,7 +86,9 @@ export default async function BlogPage() {
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-10">
             {/* Articles */}
             <div>
-              <ArticlesGrid articles={allArticles} categories={dynamicCategories} />
+              <Suspense fallback={<div className="text-center py-10">Carregando artigos...</div>}>
+                <ArticlesGrid articles={allArticles} categories={dynamicCategories} />
+              </Suspense>
             </div>
             {/* Sidebar desktop */}
             <div className="sidebar-desktop-only">
