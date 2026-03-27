@@ -81,7 +81,7 @@ export default function Header({ transparent = false }: HeaderProps) {
             <p className="font-serif text-base font-semibold text-white leading-tight">
               Rafael Mendes
             </p>
-            <p className="hidden sm:block text-[0.62rem] text-white/50 font-medium uppercase tracking-widest">
+            <p className="text-[0.55rem] sm:text-[0.62rem] text-white/50 font-medium uppercase tracking-widest">
               Psicólogo Clínico · CRP 06/12345
             </p>
           </div>
