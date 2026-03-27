@@ -280,6 +280,7 @@ export default function BlogSidebar({ categories }: Props) {
               <li key={cat.id}>
                 <Link
                   href={`/blog?cat=${cat.id}`}
+                  scroll={false}
                   className="flex items-center justify-between px-3 py-2 rounded-[8px] transition-all text-sm font-semibold text-gray-700 hover:text-forest-800 hover:bg-sage-100 focus:outline-none focus:ring-2 focus:ring-forest-800"
                   style={{ textDecoration: "none" }}
                 >

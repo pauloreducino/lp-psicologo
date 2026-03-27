@@ -1,5 +1,6 @@
 "use client";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import type { Article, Category } from "@/types";
@@ -20,9 +21,18 @@ interface Props {
 }
 
 export default function ArticlesGrid({ articles, categories }: Props) {
+  const searchParams = useSearchParams();
   const [activeCat, setActiveCat] = useState("all");
   const [query, setQuery] = useState("");
   const [page, setPage] = useState(1);
+
+  // Sincroniza com o parâmetro `cat` da URL
+  useEffect(() => {
+    const catParam = searchParams.get("cat");
+    if (catParam && categories.some((c) => c.id === catParam)) {
+      setActiveCat(catParam);
+    }
+  }, [searchParams, categories]);
 
   const filtered = useMemo(() => {
     const q = query.toLowerCase().trim();
